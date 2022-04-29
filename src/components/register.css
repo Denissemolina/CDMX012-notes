@@ -1,0 +1,46 @@
+#container_register {
+  border: 5px solid #584f84;
+  border-radius: 1em;
+  background-color: var(--white-alpha-40);
+  backdrop-filter: var(--blur);
+  margin-top: 3rem;
+  margin-left: 1rem;
+  width: 17rem;
+  height: 20rem;
+}
+#tittle_register {
+  font-size: 25px;
+  margin: 0.7rem;
+}
+.form_register {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-bottom: 3px solid #876a96;
+  margin: 0.4rem;
+  font-size: 20px;
+  width: 75%;
+}
+.submit {
+  background: #584f84;
+  color: #ffffff;
+  border-radius: 25px;
+  width: 150px;
+  margin: 1rem 4.8rem;
+  font-size: 20px;
+}
+::placeholder {
+  color: #5a0b95;
+}
+
+#container_privacy {
+  width: 17rem;
+  margin-left: 1rem;
+  margin-top: 1.5rem;
+}
+#privacy_terms {
+  font-size: 13px;
+}
+#error {
+  color: #8F2B00;
+  font-weight:bolder;
+}

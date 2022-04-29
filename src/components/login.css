@@ -1,0 +1,51 @@
+#container_singin {
+  border: 5px solid #584f84;
+  border-radius: 1em;
+  background-color: var(--white-alpha-40);
+  backdrop-filter: var(--blur);
+  margin-top: 3rem;
+  margin-left: 1rem;
+  width: 17rem;
+  height: 17rem;
+}
+#tittle_singin {
+  font-size: 25px;
+  margin: 0.7rem;
+}
+.form_singin {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-bottom: 3px solid #876a96;
+  margin: 0.4rem;
+  font-size: 20px;
+  width: 75%;
+}
+.submit {
+  background: #584f84;
+  color: #ffffff;
+  border-radius: 25px;
+  width: 150px;
+  margin: 1rem 4.8rem;
+  font-size: 20px;
+}
+::placeholder {
+  color: #5a0b95;
+}
+.btn_google {
+  background-color: transparent;
+  border-style: none;
+  margin-left: 0.7rem;
+}
+#google_btn {
+  width: 60px;
+  height: 60px;
+}
+#singin_google {
+  font-size: 25px;
+  color: #876a96;
+  margin-top: 5rem;
+}
+#error {
+  color: #8F2B00;
+  font-weight:bolder;
+}
