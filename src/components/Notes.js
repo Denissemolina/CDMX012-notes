@@ -1,33 +1,81 @@
 import "./notes.css";
-import { auth, collection, getDocs, addDoc, doc, setDoc } from "firebase/firestore";
+import {
+  auth,
+  collection,
+  getDocs,
+  addDoc,
+  doc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../lib/FirebaseConfig";
-
-
-const firstNotes = async (e) => {
-  try {
-    const docRef = await addDoc(collection(db, "Nouts"), {
-      Tittle: "ho",
-      Note: "la",
-    });
-    console.log("Document written with ID: ", docRef.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
-};
-
-const handleChange = ({ target: { Tittle, value } }) =>
-docRef({ ...Notes, [Tittle]: value });
-
+import { useEffect, useState } from "react";
 
 export default function Notes() {
+  const [newTittle, setNewTittle] = useState("");
+  const [newNote, setNewNote] = useState("");
+
+  const [note, setNote] = useState([]);
+  const docRef = collection(db, "Notes");
+
+  const createNote = async () => {
+    await addDoc;
+  };
+
+  const updateNote = async (id, Tittle, note) => {
+    await updateDoc(docRef, {
+      Tittle: newTittle,
+      note: newNote,
+    });
+  };
+
+  useEffect(() => {
+    const impressNotes = async () => {
+      const data = await getDocs(docRef);
+      setNote(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+
+    impressNotes();
+  }, []);
+
   return (
     <div className="div_notes">
       <div>
         <form>
-          <input onChange={handleChange} placeholder="Titulo" />
-          <input onChange={handleChange} placeholder="Escribe tu nota" />
+          <input
+            onChange={(event) => {
+              setNewTittle(event.target.value);
+            }}
+            placeholder="Titulo"
+          />
+          <input
+            onChange={(event) => {
+              setNewNote(event.target.value);
+            }}
+            placeholder="Escribe tu nota"
+          />
         </form>
-        <button onClick={firstNotes}> Enviar </button>
+        <button onClick={createNote}> Enviar </button>
+        {note.map((note) => {
+          return (
+            <div>
+              {" "}
+              <h1>Tittle: {note.Tittle}</h1>
+              <p>note: {note.note}</p>
+            </div>
+          );
+        })}
+        <input
+          onChange={(event) => {
+            setNewNote(event.target.value);
+          }}
+          placeholder="Actualiza"
+        />
+        <button
+          onClick={ updateNote(note.id, note.Tittle)}
+        >
+          Edit
+        </button>
       </div>
     </div>
   );
