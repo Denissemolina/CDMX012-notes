@@ -1,0 +1,24 @@
+#Home {
+  display: flex;
+  justify-content: flex-end;
+}
+#button_add_note {
+  background-color: transparent;
+  border-style: none;
+}
+#add_button {
+  height: 100px;
+  width: 100px;
+}
+#container_note {
+  background-image: url(../../public/images/Note.png);
+}
+.btn_edit {
+  background-color: transparent;
+  border-style: none;
+  margin-left: 0.7rem;
+}
+#edit_btn {
+  width: 40px;
+  height: 40px;
+}

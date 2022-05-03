@@ -6,39 +6,58 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  onSnapshot,
+  query,
 } from "firebase/firestore";
 import { db } from "../lib/FirebaseConfig";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 export default function Notes() {
   const [newTittle, setNewTittle] = useState("");
   const [newNote, setNewNote] = useState("");
-  const [tittleValor, updateTittle] = useState("");
-
+  const [updateTittle, setUpdateTittle] = useState("");
+  const [updateNote, setUpdateNote] = useState("");
 
   const [note, setNote] = useState([]);
   const docRef = collection(db, "Notes");
 
   //CREAR NOTAS SI SIRVE
-  const createNote = async () => {
+  const createNote = async (e) => {
+    e.preventDefault();
     await addDoc(docRef, { Tittle: newTittle, note: newNote });
   };
+
 
   //BORRAR NOTA
   const deleteNote = async (id) => {
     const userDoc = doc(db, "Notes", id);
     await deleteDoc(userDoc);
+    Swal.fire({
+      title: "¿Quieres eliminar la nota?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#584f84",
+      cancelButtonColor: "#8f2b00",
+      confirmButtonText: "Sí",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("¡Borrado!", "Tu nota fue eliminada.", "success");
+      }
+    });
   };
 
   //ACTUALIZAR!!!!!
-  const updateNote = async (id, Tittle) => {
+  const updateNotes = async (id, Tittle, note) => {
     const userDoc = doc(db, "Notes", id);
     await updateDoc(userDoc, {
-      Tittle: tittleValor,
+      Tittle: updateTittle,
+      note: updateNote,
     });
   };
 
   []; //IMPRIMIR LAS NOTAS EN PANTALLA
+
   useEffect(() => {
     const impressNotes = async () => {
       const data = await getDocs(docRef);
@@ -66,26 +85,31 @@ export default function Notes() {
 
       <button onClick={createNote}> Enviar </button>
       {note.map((note, pos) => {
-        //esto ESTABA OK Y SERA MODIFICADO PAL EDIT
         return (
-          <div key={pos}>
+          <div id="container_note" key={pos}>
             {" "}
-            <h1>T: {note.Tittle}</h1>
-            <h2>n: {note.note}</h2>
+            <h1>{note.Tittle}</h1>
+            <h2>{note.note}</h2>
             <input
-              placeholder="Actualizar"
+              placeholder="Actualizar titulo"
               onChange={(event) => {
-                updateTittle(event.target.value);
-                console.log(updateTittle);
+                setUpdateTittle(event.target.value);
+                console.log(setUpdateTittle);
+              }}
+            />
+            <input
+              placeholder="Actualizar nota"
+              onChange={(event) => {
+                setUpdateNote(event.target.value);
               }}
             />
             <button
+              className="btn_edit"
               onClick={() => {
-                updateNote(note.id, note.Tittle);
+                updateNotes(note.id, note.Tittle);
               }}
             >
-              {" "}
-              ZEND{" "}
+              <img id="edit_btn" src="./images/edit.png" />
             </button>
             <button
               onClick={() => {

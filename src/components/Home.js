@@ -11,12 +11,17 @@ export default function Home() {
     } catch (error) {}
   };
 
-  if (loading) return <h1>Cargando</h1>;
+  if (loading) return <h1>Cargando..</h1>;
 
   return (
     <div className="Home">
-      <h1> Holis {user.displayName || user.email} </h1>
-      <button onClick={handleLogout}>Cerrar sesión</button>
+      <button id='button_add_note'>
+    <img id="add_button" src="./images/Add_note.svg" />
+    </button>  
+      <section id='container_header'>
+      <h1 id='user_name'>{user.displayName || user.email} </h1>
+      <button id='button_logout' onClick={handleLogout}>Cerrar sesión</button>
+      </section>
       <Notes></Notes>
     </div>
   );

@@ -2,13 +2,7 @@
   --white-alpha-40: rgba(255, 255, 255, 0.4);
   --blur: blur:(15px);
 }
-body {
-  background-image: url(../public/images/Background.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  background-color: #d7c1e0;
-}
-.App {
+
+/* .App {
   position: absolute;
-}
+} */
