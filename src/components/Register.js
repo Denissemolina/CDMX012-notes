@@ -2,6 +2,7 @@ import "./register.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../context/authContext";
+import Header from "./Header";
 
 export default function Register() {
   const [user, setUser] = useState({
@@ -36,38 +37,41 @@ export default function Register() {
   };
 
   return (
-    <div id="container_register">
-      <p id="tittle_register"> Regístrate </p>
-      <form onSubmit={handleSubmit}>
-        {/* <input
+    <section>
+      <Header />
+      <div id="container_register">
+        <p id="tittle_register"> Regístrate </p>
+        <form onSubmit={handleSubmit}>
+          {/* <input
           className="form_register"
           type="text"
           name="user"
           placeholder="Usuario"
           onChange={handleChange}
         /> */}
-        <input
-          className="form_register"
-          type="email"
-          name="email"
-          placeholder="Correo"
-          onChange={handleChange}
-        />
-        <input
-          className="form_register"
-          type="password"
-          name="password"
-          placeholder="Contraseña"
-          onChange={handleChange}
-        />
-        <button className="submit"> Entrar </button>
-      </form>
-      {error && <p id="error">{error}</p>}
-      <p id="privacy_terms">
-        Al registrarte aceptas los términos, condiciones y la política de
-        privacidad 💀.
-      </p>
-      <Link to="/iniciar-sesion"> Inicia sesión </Link>
-    </div>
+          <input
+            className="form_register"
+            type="email"
+            name="email"
+            placeholder="Correo"
+            onChange={handleChange}
+          />
+          <input
+            className="form_register"
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+            onChange={handleChange}
+          />
+          <button className="submit"> Entrar </button>
+        </form>
+        {error && <p id="error">{error}</p>}
+        <p id="privacy_terms">
+          Al registrarte aceptas los términos, condiciones y la política de
+          privacidad 💀.
+        </p>
+        <Link to="/iniciar-sesion"> Inicia sesión </Link>
+      </div>
+    </section>
   );
 }

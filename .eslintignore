@@ -14,3 +14,5 @@ FirebaseConfig.js
 authContext.js
 App.js
 ProtectedRoute.js
+CreateNotes.js
+EditNotes.js

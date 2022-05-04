@@ -2,6 +2,7 @@ import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../context/authContext";
+import Header from "./Header";
 
 export default function Login() {
   const [user, setUser] = useState({
@@ -46,37 +47,42 @@ export default function Login() {
   };
 
   return (
-    <div id="container_singin">
-      <p id="tittle_register"> Inicia sesión </p>
-      <form onSubmit={handleSubmit}>
-        <input
-          className="form_singin"
-          type="email"
-          name="email"
-          placeholder="Correo"
-          onChange={handleChange}
-        />
-        <input
-          className="form_singin"
-          type="password"
-          name="password"
-          placeholder="Contraseña"
-          onChange={handleChange}
-        />
-        <button className="submit"> Entrar </button>
-      </form>
+    <section>
+      <Header />
+      <div id="container_singin">
+        <p id="tittle_register"> Inicia sesión </p>
+        <form onSubmit={handleSubmit}>
+          <input
+            className="form_singin"
+            type="email"
+            name="email"
+            placeholder="Correo"
+            onChange={handleChange}
+          />
+          <input
+            className="form_singin"
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+            onChange={handleChange}
+          />
+          <button className="submit"> Entrar </button>
+        </form>
 
-      {error && <p id="error">{error}</p>}
-      <Link to="/registro">Crear una cuenta </Link>
-      <h3 id="singin_google"> O inicia sesión con </h3>
-      <button
-        onClick={handleGoogleSingin}
-        className="btn_google"
-        id="google_btn"
-      >
-        <img id="google_btn" src="./images/google.png" />
-      </button>
-      <Link to="/">notas</Link>
-    </div>
+        {error && <p id="error">{error}</p>}
+        <Link to="/registro">Crear una cuenta </Link>
+        <section>
+        <h3 id="singin_google"> O inicia sesión con </h3>
+        <button
+          onClick={handleGoogleSingin}
+          className="btn_google"
+          id="google_btn"
+        >
+          <img id="google_btn" src="./images/google.png" />
+        </button>
+        </section>
+        <Link to="/">notas</Link>
+      </div>
+    </section>
   );
 }

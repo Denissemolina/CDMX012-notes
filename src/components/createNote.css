@@ -1,0 +1,63 @@
+#container_create_note {
+  background-image: url(../../public/images/Background_notes.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #d7c1e0;
+  position: fixed;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#note_maker {
+  background-image: url(../../public/images/Note.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 20px;
+  width: 1000px;
+  height: 600px;
+}
+/* #note {
+  width: 700px;
+  height: 500px;
+} */
+#button_return_home {
+  background-color: transparent;
+  border-style: none;
+  margin-left: 100px;
+  margin-bottom: 1rem;
+}
+#img_return_home {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+}
+.note_inputs {
+  border: none;
+  color: white;
+  background-color: transparent;
+  margin: 3rem;
+  font-size: 40px;
+  width: 50%;
+}
+#input_tittle {
+  margin-top: 2rem;
+  margin-left: 4rem;
+}
+#input_note {
+  margin-left: 12rem;
+}
+#section_send_note {
+  margin-left: 600px;
+  margin-top: 7rem;
+}
+#button_send_note {
+  background-color: transparent;
+  border-style: none;
+}
+#send_note {
+  width: 80px;
+  height: 80px;
+}

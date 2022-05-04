@@ -1,6 +1,12 @@
-#Home {
-  display: flex;
-  justify-content: flex-end;
+.div_notes {
+  background-image: url(../../public/images/Background_notes.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #d7c1e0;
+  position: fixed;
+  margin: 0;
+  width: 100%;
+  height: 100%;
 }
 #button_add_note {
   background-color: transparent;
@@ -10,15 +16,45 @@
   height: 100px;
   width: 100px;
 }
-#container_note {
-  background-image: url(../../public/images/Note.png);
+#container_header {
+  display: flex;
+  justify-content: space-between;
 }
-.btn_edit {
+#user_name {
+  font-weight: bolder;
+  font-size: 22px;
+}
+#button_logout {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  opacity: 90%;
+  height: min-content;
+  font-style: oblique;
+  font-weight: bolder;
+  font-size: 20px;
+  margin: 1rem;
+}
+#container_notes {
+  background-image: url(../../public/images/Note.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 300px;
+  width: 300px;
+}
+.print_tittle {
+  font-size: 33px;
+  margin-left: 60px;
+}
+.print_note {
+  font-size: 25px;
+  margin-left: 60px;
+}
+.buttons_update_delete {
   background-color: transparent;
   border-style: none;
   margin-left: 0.7rem;
 }
-#edit_btn {
+.img_buttons {
   width: 40px;
   height: 40px;
 }
