@@ -1,7 +1,13 @@
 import "./notes.css";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
-import { collection, doc, deleteDoc, onSnapshot, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  deleteDoc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../lib/FirebaseConfig";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
@@ -11,8 +17,6 @@ export default function Notes() {
   /////////////////////////////////////////////
   const { user, logout, loading } = useAuth();
   const navigate = useNavigate();
-  const [updateTittle, setUpdateTittle] = useState("");
-  const [updateNote, setUpdateNote] = useState("");
 
   const handleLogout = async () => {
     try {
@@ -83,45 +87,32 @@ export default function Notes() {
           Cerrar sesión
         </button>
       </section>
-      {note.map((note, pos) => {
-        return (
-          <div id="container_notes" key={pos}>
-            {" "}
-            <h1 className="print_tittle">{note.Tittle}</h1>
-            <h2 className="print_note">{note.note}</h2>
-            <input
-              placeholder="Actualizar titulo"
-              onChange={(event) => {
-                setUpdateTittle(event.target.value);
-                console.log(setUpdateTittle);
-              }}
-            />
-            <input
-              placeholder="Actualizar nota"
-              onChange={(event) => {
-                setUpdateNote(event.target.value);
-              }}
-            />
-              <button
-              className="buttons_update_delete"
-              onClick={() => {
-                updateNotes(note.id, note.Tittle);
-              }}
-            >
-              <img className="img_buttons" src="./images/edit.png" />
-            </button>
-            <button
-            className="buttons_update_delete"
-              onClick={() => {
-                deleteNote(note.id);
-              }}
-            >
+      <div id="container_all_notes">
+        {note.map((note, pos) => {
+          return (
+            <div id="container_notes" key={pos}>
               {" "}
-              <img className="img_buttons" src="./images/Delete.png" />
-            </button>
-          </div>
-        );
-      })}
+              <h1 className="print_tittle">{note.Tittle}</h1>
+              <h2 className="print_note">{note.note}</h2>
+              <button
+                className="buttons_update_delete"
+                onClick={() => navigate(`/editar-nota/${note.id}`)}
+              >
+                <img className="img_buttons" src="./images/edit.png" />
+              </button>
+              <button
+                className="buttons_update_delete"
+                onClick={() => {
+                  deleteNote(note.id);
+                }}
+              >
+                {" "}
+                <img className="img_buttons" src="./images/Delete.png" />
+              </button>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

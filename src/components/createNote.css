@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
 }
-#note_maker {
+.note_maker {
   background-image: url(../../public/images/Note.png);
   background-repeat: no-repeat;
   background-size: contain;
@@ -23,13 +23,13 @@
   width: 700px;
   height: 500px;
 } */
-#button_return_home {
+.button_return_home {
   background-color: transparent;
   border-style: none;
   margin-left: 100px;
   margin-bottom: 1rem;
 }
-#img_return_home {
+.img_return_home {
   width: 80px;
   height: 80px;
   margin-bottom: 1rem;
@@ -53,11 +53,11 @@
   margin-left: 600px;
   margin-top: 7rem;
 }
-#button_send_note {
+.button_send_note {
   background-color: transparent;
   border-style: none;
 }
-#send_note {
+.send_note {
   width: 80px;
   height: 80px;
 }

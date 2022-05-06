@@ -25,7 +25,7 @@
   color: #ffffff;
   border-radius: 25px;
   width: 150px;
-  margin: 1rem 4.8rem;
+  margin: 1rem 4.2rem;
   font-size: 20px;
 }
 ::placeholder {
@@ -36,16 +36,20 @@
   border-style: none;
   margin-left: 0.7rem;
 }
+
 #google_btn {
-  width: 60px;
-  height: 60px;
+  width: 180px;
+  height: 38px;
+
+  margin-top: 0.7rem;
+  margin-left: 2rem;
 }
 #singin_google {
-  font-size: 25px;
-  color: #876a96;
-  margin-top: 5rem;
+  font-size: 16px;
+  color: #82888e;
+  margin: 0.2rem;
 }
 #error {
-  color: #8F2B00;
-  font-weight:bolder;
+  color: #8f2b00;
+  font-weight: bolder;
 }

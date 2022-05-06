@@ -7,6 +7,12 @@
   margin: 0;
   width: 100%;
   height: 100%;
+
+}
+#container_all_notes{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 #button_add_note {
   background-color: transparent;
@@ -40,6 +46,7 @@
   background-size: contain;
   height: 300px;
   width: 300px;
+ 
 }
 .print_tittle {
   font-size: 33px;

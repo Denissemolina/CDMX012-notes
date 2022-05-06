@@ -43,6 +43,9 @@ export default function Login() {
       navigate("/");
     } catch (error) {
       setError(error.message);
+      if (error.code === "auth/popup-closed-by-user") {
+        setError("Inicio de sesión cerrado por el usuario");
+      }
     }
   };
 
@@ -71,18 +74,17 @@ export default function Login() {
 
         {error && <p id="error">{error}</p>}
         <Link to="/registro">Crear una cuenta </Link>
-        <section>
-        <h3 id="singin_google"> O inicia sesión con </h3>
-        <button
-          onClick={handleGoogleSingin}
-          className="btn_google"
-          id="google_btn"
-        >
-          <img id="google_btn" src="./images/google.png" />
-        </button>
-        </section>
-        <Link to="/">notas</Link>
+
+        {/* <Link to="/">notas</Link> */}
       </div>
+
+      <button
+        onClick={handleGoogleSingin}
+        className="btn_google"
+        id="google_btn"
+      >
+        <img id="google_btn" src="./images/google.png" />
+      </button>
     </section>
   );
 }

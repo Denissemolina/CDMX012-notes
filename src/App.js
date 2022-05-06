@@ -25,7 +25,7 @@ function App() {
           <Route path="/iniciar-sesion" element={<Login />} />
           <Route path="/registro" element={<Register />} />
           <Route path="/nota" element={<CreateNotes />} />
-          <Route path="/editar-nota" element={<EditNotes />} />
+          <Route path="/editar-nota/:id" element={<EditNotes />} />
         </Routes>
       </AuthProvider>
     </div>

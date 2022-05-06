@@ -25,9 +25,9 @@ export default function CreateNotes() {
 
   return (
     <div id="container_create_note">
-      <section id="note_maker">
-        <button id="button_return_home" onClick={() => navigate("/")}>
-          <img id="img_return_home" src="./images/Delete.png" />
+      <section className="note_maker">
+        <button className="button_return_home" onClick={() => navigate("/")}>
+          <img className="img_return_home" src="./images/Delete.png" />
         </button>
 
         <input
@@ -48,7 +48,7 @@ export default function CreateNotes() {
         />
         <section id="section_send_note">
           <button id="button_send_note" onClick={createNote}>
-            <img id="send_note" src="./images/Send_note.png" />
+            <img className="send_note" src="./images/Send_note.png" />
           </button>
         </section>
       </section>
