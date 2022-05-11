@@ -30,8 +30,8 @@
   margin-bottom: 1rem;
 }
 .img_return_home {
-  width: 80px;
-  height: 80px;
+  width: 20px;
+  height: 20px;
   margin-bottom: 1rem;
 }
 .note_inputs {
@@ -40,18 +40,22 @@
   background-color: transparent;
   margin: 3rem;
   font-size: 40px;
-  width: 50%;
 }
 #input_tittle {
   margin-top: 2rem;
   margin-left: 4rem;
+  font-size: 35px;
 }
 #input_note {
-  margin-left: 12rem;
+  margin-left: 10rem;
+  overflow: auto;
+  width: 500px;
+  height: 250px;
+  font-size: 30px;
+  word-wrap: break-word;
 }
 #section_send_note {
   margin-left: 600px;
-  margin-top: 7rem;
 }
 .button_send_note {
   background-color: transparent;

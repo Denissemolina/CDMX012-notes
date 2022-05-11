@@ -7,28 +7,38 @@
   margin: 0;
   width: 100%;
   height: 100%;
-
+  overflow: auto;
 }
-#container_all_notes{
+#container_all_notes {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  color: white;
+  gap: 2rem;
+  word-wrap: break-word;
 }
 #button_add_note {
   background-color: transparent;
   border-style: none;
 }
 #add_button {
-  height: 100px;
-  width: 100px;
+  height: 75px;
+  width: 75px;
+  margin-right: 1rem;
 }
 #container_header {
   display: flex;
   justify-content: space-between;
+  background-color: #38486f;
 }
 #user_name {
-  font-weight: bolder;
   font-size: 22px;
+  margin-left: 1rem;
+  color: white;
+}
+#section_button_logout {
+  display: flex;
+  justify-content: flex-end;
 }
 #button_logout {
   border: none;
@@ -39,29 +49,48 @@
   font-weight: bolder;
   font-size: 20px;
   margin: 1rem;
+  color: white;
 }
 #container_notes {
-  background-image: url(../../public/images/Note.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 300px;
-  width: 300px;
- 
+  /* background-image: url(../../public/images/Note.png); */
+  /* background-repeat: no-repeat;
+  background-size: contain; */
+  background-color:#876A96;
+  border-radius: 1rem;
+  height: 250px;
+  width: 260px;
+  overflow: auto;
+  margin: 20px;
+  
+}
+#container_notes_header{
+  display: flex;
+  flex-wrap: wrap;
 }
 .print_tittle {
-  font-size: 33px;
-  margin-left: 60px;
+  font-size: 20px;
+  margin-left: 20px;
+  font-weight: 600;
 }
 .print_note {
-  font-size: 25px;
-  margin-left: 60px;
+  font-size: 15px;
+  margin-left: 15px;
+  font-weight: 300;
+}
+#date{
+  font-size: 10px;
 }
 .buttons_update_delete {
   background-color: transparent;
   border-style: none;
-  margin-left: 0.7rem;
 }
-.img_buttons {
-  width: 40px;
-  height: 40px;
+#img_button_edit {
+  width: 35px;
+  height: 35px;
+ margin-left: 190px;
+ margin-top: 50px;
+}
+#img_button_delete{
+  width: 17px;
+  height: 17px;
 }

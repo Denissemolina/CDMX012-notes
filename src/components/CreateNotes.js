@@ -3,25 +3,27 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../lib/FirebaseConfig";
+import { auth } from "../lib/FirebaseConfig";
 
 export default function CreateNotes() {
   const navigate = useNavigate();
-  /////////////////////////////////////////////////
-  const [updateTittle, setUpdateTittle] = useState("");
-  const [updateNote, setUpdateNote] = useState("");
-
   const [note, setNote] = useState([]);
-
   const [newTittle, setNewTittle] = useState("");
   const [newNote, setNewNote] = useState("");
   const docRef = collection(db, "Notes");
+
   //CREAR NOTAS SI SIRVE
   const createNote = async (e) => {
-    e.preventDefault();
-    await addDoc(docRef, { Tittle: newTittle, note: newNote });
+    const users = auth.currentUser;
+    const uid = users.uid;
+    await addDoc(docRef, {
+      Tittle: newTittle,
+      note: newNote,
+      date: new Date(),
+      UID: uid,
+    });
     navigate("/");
   };
-  /////////////////////////////////////////
 
   return (
     <div id="container_create_note">
@@ -32,13 +34,13 @@ export default function CreateNotes() {
 
         <input
           className="note_inputs"
-          id='input_tittle'
+          id="input_tittle"
           placeholder="Título"
           onChange={(event) => {
             setNewTittle(event.target.value);
           }}
         />
-        <input
+        <textarea
           className="note_inputs"
           id="input_note"
           placeholder="Escribe tu nota 💀"
@@ -47,7 +49,7 @@ export default function CreateNotes() {
           }}
         />
         <section id="section_send_note">
-          <button id="button_send_note" onClick={createNote}>
+          <button className="button_send_note" onClick={createNote}>
             <img className="send_note" src="./images/Send_note.png" />
           </button>
         </section>

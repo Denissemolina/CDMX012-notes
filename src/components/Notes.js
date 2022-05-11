@@ -1,20 +1,21 @@
 import "./notes.css";
+import React from "react";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 import {
   collection,
   doc,
+  query,
   deleteDoc,
   onSnapshot,
-  updateDoc,
+  where,
+  orderBy
 } from "firebase/firestore";
+import { auth } from "../lib/FirebaseConfig";
 import { db } from "../lib/FirebaseConfig";
 import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import Header from "./Header";
 
 export default function Notes() {
-  /////////////////////////////////////////////
   const { user, logout, loading } = useAuth();
   const navigate = useNavigate();
 
@@ -24,11 +25,16 @@ export default function Notes() {
     } catch (error) {}
   };
 
+  const uid = user.uid;
+
   if (loading) return <h1>Cargando..</h1>;
-  ///////////////////////////////////////////////
 
   const [note, setNote] = useState([]);
-  const docRef = collection(db, "Notes");
+  const docRef = query(
+    collection(db, "Notes"),
+    where("UID", "==", uid),
+    orderBy("date", "desc")
+  );
 
   //GUARDAR NOTAS TIEMPO REAL
   const createNote = async () => {
@@ -40,35 +46,23 @@ export default function Notes() {
       setNote(docs);
     });
   };
-
   //BORRAR NOTAS
   const deleteNote = async (id) => {
     const userDoc = doc(db, "Notes", id);
     await deleteDoc(userDoc);
-    Swal.fire({
-      title: "¿Quieres eliminar la nota?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#584f84",
-      cancelButtonColor: "#8f2b00",
-      confirmButtonText: "Sí",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("¡Borrado!", "Tu nota fue eliminada.", "success");
-      }
-    });
   };
 
-  //ACTUALIZAR!!!!!
-  const updateNotes = async (id, Tittle, note) => {
-    const userDoc = doc(db, "Notes", id);
-    await updateDoc(userDoc, {
-      Tittle: updateTittle,
-      note: updateNote,
-    });
-  };
+  function getDate(date) {
+    return new Date(
+      date.seconds * 1000 + date.nanoseconds / 1000000,
+    ).toDateString('es-MX');
+  }
 
-  []; //IMPRIMIR LAS NOTAS EN PANTALLA
+  function getTime(date) {
+    return new Date(
+      date.seconds * 1000 + date.nanoseconds / 1000000,
+    ).toLocaleTimeString('es-MX');
+  }
 
   useEffect(() => {
     createNote();
@@ -76,13 +70,13 @@ export default function Notes() {
 
   return (
     <div className="div_notes">
-      <Header />
-      {/* SAQUE LE FORM Y SI FUNCIONA*/}
-      <button id="button_add_note" onClick={() => navigate("/nota")}>
-        <img id="add_button" src="./images/Add_note.svg" />
-      </button>
-      <section id="container_header">
+      <header id="container_header">
         <h1 id="user_name">{user.displayName || user.email} </h1>
+        <button id="button_add_note" onClick={() => navigate("/nota")}>
+          <img id="add_button" src="./images/Add_note.svg" />
+        </button>
+      </header>
+      <section id="section_button_logout">
         <button id="button_logout" onClick={handleLogout}>
           Cerrar sesión
         </button>
@@ -91,23 +85,24 @@ export default function Notes() {
         {note.map((note, pos) => {
           return (
             <div id="container_notes" key={pos}>
-              {" "}
-              <h1 className="print_tittle">{note.Tittle}</h1>
+              <section id="container_notes_header">
+                <button
+                  className="buttons_update_delete"
+                  onClick={() => {
+                    deleteNote(note.id);
+                  }}
+                >
+                  <img id="img_button_delete" src="./images/Close.png" />
+                </button>
+                <h1 className="print_tittle">{note.Tittle}</h1>
+              </section>
               <h2 className="print_note">{note.note}</h2>
+              {/* <p id='date'>{getDate(note.date)} {getTime(note.date)}</p> */}
               <button
                 className="buttons_update_delete"
                 onClick={() => navigate(`/editar-nota/${note.id}`)}
               >
-                <img className="img_buttons" src="./images/edit.png" />
-              </button>
-              <button
-                className="buttons_update_delete"
-                onClick={() => {
-                  deleteNote(note.id);
-                }}
-              >
-                {" "}
-                <img className="img_buttons" src="./images/Delete.png" />
+                <img id="img_button_edit" src="./images/edit.png" />
               </button>
             </div>
           );
