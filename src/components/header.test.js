@@ -6,6 +6,5 @@ describe('Header component', () => {
   // eslint-disable-next-line no-undef
   it('render the content', () => {
     render(<Header />);
-    screen.debug();
   });
 });
