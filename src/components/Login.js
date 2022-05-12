@@ -52,6 +52,7 @@ export default function Login() {
   return (
     <section>
       <Header />
+      <span>No hay usuario</span>
       <div id="container_singin">
         <p id="tittle_register"> Inicia sesión </p>
         <form onSubmit={handleSubmit}>
